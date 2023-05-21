@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import { ChoiceList, getImageUrl, buildStoryArc, getCurrentStory } from './helper'
+
 
 function App() {
   return (
@@ -30,16 +32,24 @@ function App() {
         <div className='container-story-choices'>
           <div className='container-story'>
             <div className='container-text'>
-              <div className='story-arc'></div>
-              <div className='story-current'></div>
+              <div className='story-arc'>
+                <p className='story-arc'>{buildStoryArc(current_url)}</p>
+              </div>
+              <div className='story-current'>
+                <p className='story-current'>{getCurrentStory(current_url)}</p>
+              </div>
             </div>
             <div className='container-choices'>
-              <Choices></Choices>
+              {ChoiceList(choices)}
             </div>
           </div>
         </div>
 
-        <div className='container-image'></div>
+        <div className='container-image'>
+          <div className='image'>
+            <image src={getImageUrl(current_url)} alt='' className='image'></image>
+          </div>
+        </div>
 
       </div>
 
