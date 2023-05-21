@@ -163,6 +163,18 @@ class StoryGenerator:
         story = story_generator.generate("", "")
         choices = story["choices"]
         print("Story started")
+        
+        image_prompt = story["image_prompt"]
+        response = openai.Image.create(
+            prompt=image_prompt,
+            n=1,
+            size="1024x1024"
+            )
+        image_url = response['data'][0]['url']
+        #save image
+        with open(os.path.join("../server/images", "0.png"), 'wb') as f:
+            f.write(requests.get(image_url).content)
+        
         for i in range(self.n_choices):
             self.recurse_gen(1, story["scene"], choices[i], bible, "0", i)
 
@@ -184,7 +196,7 @@ class StoryGenerator:
             )
         image_url = response['data'][0]['url']
         #save image
-        with open(os.path.join("images", prev_name + "_" + str(choice_number) + ".png"), 'wb') as f:
+        with open(os.path.join("../server/images", prev_name + "_" + str(choice_number) + ".png"), 'wb') as f:
             f.write(requests.get(image_url).content)
 
         for i in range(self.n_choices):
@@ -199,5 +211,5 @@ if __name__ == "__main__":
     # synopsis = "In the fantastical world of Aistris, our story follows the adventures of Elenor, a young witch, and her companion, Asher, an ambitious nobleman. Their mission is to discover the truth behind the mysterious murder of the kingdom's beloved ruler, the King. Following a lead, Elenor and Asher travel to the Kingdom of Millstone. There, they meet a cast of colorful characters, including a magical fox; a wise, old wizard; and a mysterious witch. As the story unfolds, our heroes uncover a web of deception and lies that leads them to an unexpected and shocking revelation. Along the way, they will have to make tough choices that could mean the difference between life and death. Will Elenor and Asher find the truth behind the King's murder, or will they be too late to save the kingdom?"
     # bible_generator.generate(synopsis)
 
-    story_generator = StoryGenerator(3, 2, "story.txt", "story_parts", "settings")
+    story_generator = StoryGenerator(8, 1, "story.txt", "story_parts", "settings")
     story_generator.start_story("bible.txt", "story_arc.txt")
