@@ -1,12 +1,14 @@
 import { useState, useRef} from 'react'
 import './App.css'
 import { useEffect } from 'react';
-import { handleFetchNecessarySceneData } from './utils/handleRequests';
+import { handleFetchNecessarySceneData, handleFetchNecessarySceneImage } from './utils/handleRequests';
 
 function App() {
   const [sceneIds, setSceneIds] = useState([0]);
   const [arc, setArc] = useState([]);
   const [choices, setChoices] = useState([]);
+  const [imageUrl, setImageUrl] = useState('');
+
   const depth = 5
 
   const handleArcUpdate = (arct) => {
@@ -29,6 +31,16 @@ function App() {
     }
   }
 
+  const handleFetchImage = async () => {
+    try {
+      const imageUrl = await handleFetchNecessarySceneImage({ scene_ids : sceneIds });
+      setImageUrl(imageUrl);
+    } catch (error) {
+      console.error("Error status:", error.status);
+      console.error("Error message:", error.message);
+    }
+  }
+
   const handleChoiceClick = async (number) => {
     if(sceneIds.length<depth) {
       setSceneIds(prevSceneIds => [...prevSceneIds, number]);
@@ -41,6 +53,7 @@ function App() {
 
   useEffect(() => {
     handleFetchData();
+    handleFetchImage();
   }, [sceneIds]);
 
   const scrollRef = useRef(null);
@@ -58,7 +71,7 @@ function App() {
                 <div className="lorem-text">
                   {arc.map((part, index) => (
                     typeof part === 'string' 
-                      ? <p key={index} style={index === arc.length - 1 ? {color: 'green', marginTop:'1.25em'} : {}}>{part}{part}{part}{part}{part}{part}{part}{part}{part}{part}{part}</p> 
+                      ? <p key={index} style={index === arc.length - 1 ? {color: 'green', marginTop:'1.25em'} : {}}>{part}</p> 
                       
                       : null
                   ))}
@@ -75,9 +88,12 @@ function App() {
                         ))}
                 </div>
             </div>
-            <div className="right-container">
+            {/* <div className="right-container">
               <p className="lorem-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                {/* <img className="container-image" src={imageUrl} alt="container" /> */}
+                <img className="container-image" src={imageUrl} alt="container" />
+            </div> */}
+            <div className="right-container">
+              <img className="container-image" src={imageUrl} alt="scene" />
             </div>
       </div>
   )

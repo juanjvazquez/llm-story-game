@@ -27,7 +27,7 @@ router.post('/all', async (req, res) => {
                 continue;
             }
         }
-        res.send({ message: 'All JSON history fetched successfully', scene_history: scene_history });
+        res.send({ message: 'All JSON history fetched successfully', scene_history: scene_history});
     } catch (error) {
         console.error('Something went wrong while fetching the story:', error);
         res.status(500).send("Something went wrong while fetching the story");
@@ -49,7 +49,7 @@ router.post('/necessary', async (req,res) => {
             } else {
                 filename += '_' + scene_ids[i].toString();
             }
-            const filePath = path.join( '../../','db', `${filename}.json`);
+            const filePath = path.join( 'story_parts', `${filename}.json`);
             console.log(filePath)
             try {
                 const file = await fs.readFile(filePath, 'utf8');
@@ -72,5 +72,23 @@ router.post('/necessary', async (req,res) => {
         res.status(500).send('Something went wrong while fetching the Arc and Choices');
     }
 })
+
+router.post('/img', async (req,res) => {
+    console.log('Received request at /api/scene/img endpoint');
+    console.log('Body:', req.body);
+    
+    try {
+        const { scene_ids } = req.body;
+        const filename = scene_ids.join('_');  // Use join to concatenate the scene_ids with '_'
+
+        const imagePath = path.join(__dirname, '..', '..', 'images', `${filename}.png`);
+        console.log(`Sending image file: ${imagePath}`);
+        res.sendFile(imagePath);
+    } catch (error) {
+        console.error('Something went wrong while fetching the Arc and Choices:', error);
+        res.status(500).send('Something went wrong while fetching the Arc and Choices');
+    }
+})
+
 
 module.exports = router;
