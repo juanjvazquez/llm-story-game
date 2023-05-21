@@ -4,8 +4,8 @@ import './App.css'
 function App() {
   return (
     <main>
-      <header><h1>AI Story Game</h1></header>
-      <div id="text-bg"></div>
+      <header><h1>GPT Mystery Game</h1></header>
+      {/* <div id="text-bg"></div>
       <div id="text-cnt">
         <div id="story-cnt">
           <p className="story-arc">In the quiet and picturesque town of Willowbrook, nestled deep in the countryside, a sinister murder has cast a dark shadow over its idyllic charm. The victim is Amelia Hawthorne, a renowned archaeologist who had recently unearthed a long-lost artifact of immense historical significance. Amelia's body was found in her study, the room ransacked and the artifact missing, leaving a trail of unanswered questions and deep intrigue.</p>
@@ -23,7 +23,26 @@ function App() {
       <div id="image-cnt">
         <div id="image"></div>
         <div id="stage"><p>Stage 1</p></div>
+      </div> */}
+
+      <div className='container-outer'>
+        
+        <div className='container-story-choices'>
+          <div className='container-story'>
+            <div className='container-text'>
+              <div className='story-arc'></div>
+              <div className='story-current'></div>
+            </div>
+            <div className='container-choices'>
+              <Choices></Choices>
+            </div>
+          </div>
+        </div>
+
+        <div className='container-image'></div>
+
       </div>
+
     </main>
   )
 }
