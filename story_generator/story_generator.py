@@ -3,6 +3,7 @@ import json
 import re
 import os
 import sys
+import requests
 
 class BibleGenerator:
     def __init__(self, filename, directory):
@@ -175,6 +176,17 @@ class StoryGenerator:
         print("Finished generating for " + prev_name + "_" + str(choice_number) + "")
         scene = story["scene"]
         choices = story["choices"]
+        image_prompt = story["image_prompt"]
+        response = openai.Image.create(
+            prompt=image_prompt,
+            n=1,
+            size="1024x1024"
+            )
+        image_url = response['data'][0]['url']
+        #save image
+        with open(os.path.join("images", prev_name + "_" + str(choice_number) + ".png"), 'wb') as f:
+            f.write(requests.get(image_url).content)
+
         for i in range(self.n_choices):
             self.recurse_gen(n + 1, story_so_far + scene, choices[i], bible, prev_name + "_" + str(choice_number), i)
 
