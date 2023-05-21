@@ -18,18 +18,22 @@ const handleFetchNecessarySceneImage = async ({scene_ids}) => {
     try {
         const response = await axios.post(`http://localhost:8080/api/scene/img`, {
             scene_ids
-        }); // you need to set the response type to 'blob' for images
+        }, {
+            responseType: 'arraybuffer'
+        });
+        console.log(response.data)
+        // Create a blob from the arraybuffer
+        const blob = new Blob([response.data], {type: 'image/png'}); // change the MIME type accordingly
 
-        // Create a URL for the image blob
-        const imageUrl = URL.createObjectURL(response);
+        // Now, we can create a URL from the blob
+        const imageUrl = URL.createObjectURL(blob);
 
-        // or return it to be used elsewhere
+        // Return it to be used elsewhere
         return imageUrl;
 
     } catch(error) {
         throw { message: error, status: error };
     }
 }
-
 
 export { handleFetchNecessarySceneData, handleFetchNecessarySceneImage};
