@@ -71,7 +71,7 @@ function App() {
                 <div className="lorem-text">
                   {arc.map((part, index) => (
                     typeof part === 'string' 
-                      ? <p key={index} style={index === arc.length - 1 ? {color: 'green', marginTop:'1.25em'} : {}}>{part}</p> 
+                      ? <p key={index} style={index === arc.length - 1 ? {color: '#9fd3c7', marginTop:'1.25em', fontWeight:'bold'} : {}}>{part}</p> 
                       
                       : null
                   ))}

@@ -33,6 +33,8 @@ header {
   display: flex;
   width: 100%;
   height: 100vh;
+  background-color: #142d4c;
+  color: #EEA47F;
 }
 
 .left-container {
@@ -41,6 +43,8 @@ header {
   width: 50%;
   border-style: solid;
   border-color: coral;
+  border-radius: 10px;
+
 }
 
 .container-image {
@@ -50,7 +54,7 @@ header {
   padding: 0;
   border-style: solid;
   border-color: coral;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 .right-container {
@@ -71,6 +75,7 @@ header {
 .top-container {
   border-style: solid;
   border-color: coral;
+  border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px;
   height: 70%;
@@ -78,6 +83,8 @@ header {
   overflow-x: hidden;
   box-sizing: border-box;
   width: 100%;
+  background-color: #142d4c;
+  color: #ececec;
 }
 
 .lorem-text {
@@ -114,14 +121,18 @@ header {
 
 .choice {
   padding: 5%;
-  background-color: #f0f0f0;
+  background-color: #2f7363;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-style: solid;
   border-color: coral;
+  border-radius: 10px;
+  font-size: 20px;  /* adjust this value to make the text bigger */
+  font-weight: bolder;
+  color: white;
 }
 
 .choice:hover {
-  background-color: #ddd;
+  background-color: rgb(42, 72, 65);
 }
