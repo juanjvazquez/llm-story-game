@@ -103,8 +103,26 @@ class SinglePartGenerator:
         res_scene = res_scene_init["choices"][0]["text"]
         with open(os.path.join("logs", self.filename), 'w') as f:
             f.write(res_scene)
-        scene = json.loads(res_scene)
-        self.save_story(scene)
+        try:
+            scene = json.loads(res_scene)
+            self.save_story(scene)
+        except:
+            print("Error in JSON")
+            json_prompt = f"""Return this JSON without any syntax errors or issues:
+            {res_scene}
+            """
+            res_scene_init = openai.Completion.create(
+                engine='text-davinci-003',
+                prompt=json_prompt,
+                max_tokens=2000,
+                top_p=1,
+                temperature=0.9,
+                frequency_penalty=0,
+                presence_penalty=0
+            )
+            res_scene = res_scene_init["choices"][0]["text"]
+            scene = json.loads(res_scene)
+            self.save_story(scene)
         return scene
 
     def save_story(self, json_obj):
