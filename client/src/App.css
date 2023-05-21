@@ -27,3 +27,90 @@ header {
   align-items: center;
   justify-content: center;
 }
+
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.left-container {
+  margin: 3em;
+  padding: 20px;
+  width: 50%;
+  border-style: solid;
+  border-color: coral;
+}
+
+.right-container {
+  margin: 3em;
+  padding: 20px;
+  width: 50%;
+  border-style: solid;
+  border-color: coral;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.top-container {
+  border-style: solid;
+  border-color: coral;
+  margin-bottom: 20px;
+  padding: 10px;
+  height: 70%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.lorem-text {
+  padding: 10px;
+  line-height: 1.5;
+  word-wrap: break-word; 
+}
+
+.top-container::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.top-container::-webkit-scrollbar-track {
+  background: #F5F5F5;
+  border-radius: 10px;
+}
+
+.top-container::-webkit-scrollbar-thumb {
+  background: coral; 
+  border-radius: 10px; 
+}
+
+.top-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(209, 56, 0); 
+}
+
+.bottom-container {
+  height: 25%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+
+.choice {
+  padding: 5%;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-style: solid;
+  border-color: coral;
+}
+
+.choice:hover {
+  background-color: #ddd;
+}
