@@ -207,9 +207,9 @@ if __name__ == "__main__":
     openai.organization = ""
     openai.api_key = ""
 
-    # bible_generator = BibleGenerator("bible.txt", "settings")
-    # synopsis = "In the fantastical world of Aistris, our story follows the adventures of Elenor, a young witch, and her companion, Asher, an ambitious nobleman. Their mission is to discover the truth behind the mysterious murder of the kingdom's beloved ruler, the King. Following a lead, Elenor and Asher travel to the Kingdom of Millstone. There, they meet a cast of colorful characters, including a magical fox; a wise, old wizard; and a mysterious witch. As the story unfolds, our heroes uncover a web of deception and lies that leads them to an unexpected and shocking revelation. Along the way, they will have to make tough choices that could mean the difference between life and death. Will Elenor and Asher find the truth behind the King's murder, or will they be too late to save the kingdom?"
-    # bible_generator.generate(synopsis)
+    bible_generator = BibleGenerator("bible.txt", "settings")
+    synopsis = "In the fantastical world of Aistris, our story follows the adventures of Elenor, a young witch, and her companion, Asher, an ambitious nobleman. Their mission is to discover the truth behind the mysterious murder of the kingdom's beloved ruler, the King. Following a lead, Elenor and Asher travel to the Kingdom of Millstone. There, they meet a cast of colorful characters, including a magical fox; a wise, old wizard; and a mysterious witch. As the story unfolds, our heroes uncover a web of deception and lies that leads them to an unexpected and shocking revelation. Along the way, they will have to make tough choices that could mean the difference between life and death. Will Elenor and Asher find the truth behind the King's murder, or will they be too late to save the kingdom?"
+    bible_generator.generate(synopsis)
 
     story_generator = StoryGenerator(8, 1, "story.txt", "story_parts", "settings")
     story_generator.start_story("bible.txt", "story_arc.txt")
